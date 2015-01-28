@@ -1,5 +1,7 @@
 $(document).on('ready', function() {
 
+    // COMPONENTS
+
 	  var $outer = $('<div>')
   		.addClass('outer-clock');
 
@@ -27,6 +29,17 @@ $(document).on('ready', function() {
 
   	var $clockScreen = $('<div>')
   		.addClass('screen');
+
+    // AUTO BUTTON
+    
+    var $button = $('<div>')
+      .addClass('button');
+
+    $(document).on('click', $button, function(){
+        $button.animate({top: '-7px'}, 100);
+        $autoDot.toggleClass('hiding');
+        $button.animate({top: '-17px'}, 100);
+    });
   		
     // AM/FM BAND ROWS
 
@@ -107,12 +120,12 @@ $(document).on('ready', function() {
     };
 
     tick();
-
     setInterval(tick, 1000);
 
   	// PUTTING IT TOGETHER
   	
   	$('.clock').append($outer).append($inner);
+    $outer.append($button);
   	$inner.append($indicators);
   	$inner.append($clockScreen);
   	$inner.append($amRow).append($fmRow);
