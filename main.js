@@ -77,9 +77,12 @@ $(document).on('ready', function() {
 
     var $amFMSelector = $('<div>')
         .addClass('amFMSelector');
+    var $amFMLetters = $('<div>')
+        .text('AM     FM')
+        .addClass('amFMLetters');
 
     $amRow.addClass('selected');
-    $(document).on('click', $slider, function() {
+    $amFMSelector.click(function() {
       $amFMSelector.toggleClass('amFMSelector1');
       $amRow.toggleClass('selected');
       $fmRow.toggleClass('selected');
@@ -117,6 +120,19 @@ $(document).on('ready', function() {
       $colon.toggleClass('hiding');
     }, 1000);
 
+    // 24HR TIME
+    
+    var $24hr = $('<div>')
+      .text('STD     24hr')
+      .addClass('Letters');
+    var $24hrButton = $('<div>')
+      .addClass('Button');
+
+    $24hrButton.click(function(e) {
+      $24hrButton.toggleClass('moveButton');
+      e.stopPropagation();
+    });
+
     // TICK FUNCTION
 
     var tick = function(){
@@ -124,7 +140,17 @@ $(document).on('ready', function() {
         var now = new Date();
         var min = addZero(now.getMinutes());
         var hr = now.getHours();
-        hrPM = addZero(amPM(hr));
+        var hrPM = hr;
+
+        
+        if($24hrButton.hasClass('moveButton')) {
+          hrPM = amPM(hr);
+        }
+        else {
+          hrPM = hrPM;
+        }
+
+        hrPM = addZero(hrPM);
 
         // PM dot
 
@@ -140,14 +166,20 @@ $(document).on('ready', function() {
     };
 
     tick();
-    setInterval(tick, 1000);
+    setInterval(tick, 100);
 
   	// PUTTING IT TOGETHER
   	
   	$('.clock').append($outer).append($inner);
-    $outer.append($button).append($amFMSelector);
-  	$inner.append($indicators);
-  	$inner.append($clockScreen);
-  	$inner.append($amRow).append($fmRow).append($slider);
+    $outer.append($button)
+      .append($amFMSelector)
+      .append($24hr)
+      .append($amFMLetters)
+      .append($24hrButton);
+  	$inner.append($indicators)
+  	  .append($clockScreen)
+  	  .append($amRow)
+      .append($fmRow)
+      .append($slider);
  	
 });

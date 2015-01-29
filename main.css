@@ -126,28 +126,49 @@ input[type=range]::-webkit-slider-thumb {
     height: 16px;
     width: 16px;
     background-image: linear-gradient(to left, #D5D5D5, red, #D5D5D5);
-    /*background: #D5D5D5;*/
 }
 
 input[type=range]:focus {
     outline: none;
 }
-
-/*ADD RED CLASS*/
 .selected {
 	color: #AE232C;
 }
 .amFMSelector {
 	background: black;
-	width: 20px;
-	height: 10px;
+	width: 30px;
+	height: 15px;
 	position: absolute;
-	top: 205px;
-	left: -18px;
-	border-radius: 4px 0 5px 4px;
-	transform: rotate(-20deg);
+	top: -15px;
+	right: 150px;
+	border-radius: 4px 4px 0 0;
 }
 .amFMSelector1 {
-	transform: rotate(20deg);
-	border-radius: 4px 5px 0 4px;
+	right: 194px;
+}
+.amFMLetters {
+	position: absolute;
+	color: white;
+	white-space: pre;
+	top: 5px;
+	right: 155px;
+}
+.Letters {
+	position: absolute;
+	right: 40px;
+	top: 5px;
+	color: white;
+	white-space: pre;
+}
+.Button {
+	position: absolute;
+	top: -15px;
+	right: 43px;
+	height: 15px;
+	width: 30px;
+	border-radius: 4px 4px 0 0;
+	background: black;
+}
+.moveButton {
+	right: 94px;
 }
