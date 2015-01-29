@@ -86,9 +86,8 @@
 	background: black;
 	position: absolute;
 	left: 20px;
-	top: -17px;
-	border-radius: 4px;
-	z-index: -1;
+	top: -20px;
+	border-radius: 4px 4px 0 0;
 }
 .colon {
 	height: 20px;
@@ -107,4 +106,48 @@
 	position: absolute;
 	top: 14px;
 	left: 56%;
+}
+
+/*CHANNEL SLIDER*/
+input[type="range"] {
+	width: 70%;
+	margin-left: 16%;
+	-webkit-appearance: none;
+	border-radius: 2px;
+}
+input[type="range"]::-webkit-slider-runnable-track {
+	background: #5B5B5B;
+	border-radius: 2px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 16px;
+    width: 16px;
+    background-image: linear-gradient(to left, #D5D5D5, red, #D5D5D5);
+    /*background: #D5D5D5;*/
+}
+
+input[type=range]:focus {
+    outline: none;
+}
+
+/*ADD RED CLASS*/
+.selected {
+	color: #AE232C;
+}
+.amFMSelector {
+	background: black;
+	width: 20px;
+	height: 10px;
+	position: absolute;
+	top: 205px;
+	left: -18px;
+	border-radius: 4px 0 5px 4px;
+	transform: rotate(-20deg);
+}
+.amFMSelector1 {
+	transform: rotate(20deg);
+	border-radius: 4px 5px 0 4px;
 }

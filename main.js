@@ -31,14 +31,15 @@ $(document).on('ready', function() {
   		.addClass('screen');
 
     // AUTO BUTTON
-    
+
     var $button = $('<div>')
       .addClass('button');
 
-    $(document).on('click', $button, function(){
-        $button.animate({top: '-7px'}, 100);
+    $(document).on('click', '.button', function(e){
+        e.stopPropagation();
+        $button.animate({height: '5px', top: '-5px'}, 100);
         $autoDot.toggleClass('hiding');
-        $button.animate({top: '-17px'}, 100);
+        $button.animate({height: '20px', top: '-20px'}, 100);
     });
   		
     // AM/FM BAND ROWS
@@ -58,17 +59,36 @@ $(document).on('ready', function() {
     var makeRows = function(labels, band) {
       return $('<div>')
         .addClass('radioRows')
-        .append("<span class='band'>" + band + "</span>")
+        .append("<span class='band " + band + "Ind'>" + band + "</span>")
         .append(labels);
     };
 
     var $amRow = makeRows($amFreq, 'AM').append("<span><span class='little'>X10</span> Khz</span>");
     var $fmRow = makeRows($fmFreq, 'FM').append("<span class='Hz''>Mhz</span>");
 
+    // SLIDER STATION SELECTOR
+
+    var $slider = $("<input type='range'>");
+    $(document).on('click', "input[type='range']", function(e){
+      e.stopPropagation();
+    });
+
+    // AM/FM SELECTOR
+
+    var $amFMSelector = $('<div>')
+        .addClass('amFMSelector');
+
+    $amRow.addClass('selected');
+    $(document).on('click', $slider, function() {
+      $amFMSelector.toggleClass('amFMSelector1');
+      $amRow.toggleClass('selected');
+      $fmRow.toggleClass('selected');
+    });
+
   	// CLOCK FUNCTIONS
 
     var addZero = function(time) {
-      if(time < 10) {time = "0" + time};
+      if(time < 10) {time = "0" + time}
       return time;
     };
 
@@ -125,9 +145,9 @@ $(document).on('ready', function() {
   	// PUTTING IT TOGETHER
   	
   	$('.clock').append($outer).append($inner);
-    $outer.append($button);
+    $outer.append($button).append($amFMSelector);
   	$inner.append($indicators);
   	$inner.append($clockScreen);
-  	$inner.append($amRow).append($fmRow);
+  	$inner.append($amRow).append($fmRow).append($slider);
  	
 });
