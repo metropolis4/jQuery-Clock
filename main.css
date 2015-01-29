@@ -131,6 +131,8 @@ input[type=range]::-webkit-slider-thumb {
 input[type=range]:focus {
     outline: none;
 }
+
+
 .selected {
 	color: #AE232C;
 }
